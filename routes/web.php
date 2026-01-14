@@ -36,4 +36,8 @@ return 'Hello World';
 });
 
 Route::get('/test-employees', [EmployeeController::class, 'hello']);
+
+Route::get('/list-employees',[EmployeeController::class, 'index']); //this is the route to list all employees
 });
+
+
