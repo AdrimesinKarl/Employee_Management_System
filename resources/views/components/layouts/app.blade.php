@@ -1,5 +1,21 @@
-<x-layouts.app.sidebar :title="$title ?? null">
-    <flux:main>
-        {{ $slot }}
-    </flux:main>
-</x-layouts.app.sidebar>
+
+
+<html>
+    <head>
+        <title>Employee Management System - @yield('title')</title>
+    </head>
+    <body>
+        <header>
+        <h1>Employee Management System</h1>
+        <hr/>
+        </header>
+
+        <main>
+            @yield('content') <!--this is where the content of child views will be displayed-->
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Employee System</p>
+        </footer>
+    </body>
+</html>
