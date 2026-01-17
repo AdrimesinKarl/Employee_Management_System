@@ -1,20 +1,66 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\http\Controllers\Controller;
-use App\Models\Employee;
+
+use Illuminate\Http\Request;
+use App\Models\Employee; //tells php where the class is
 
 class EmployeeController extends Controller
 {
-    public function hello () {
-        return view('employees.hello');
-    }
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index() {
         $employees = Employee::all(); //this fecth all employees from the employees table
         return view('employees.employee_list', compact('employees')); //past the data to the view
 
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }
-
-
