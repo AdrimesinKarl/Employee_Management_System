@@ -36,6 +36,6 @@ Route::get('/greeting', function (){
 return 'ayaw ko na!';
 });
 
-Route::get('/list-employees',[EmployeeController::class, 'index']); //this is the route to list all employees
+Route::resource('employees',EmployeeController::class); //this is the route to list all employees
 
 });
