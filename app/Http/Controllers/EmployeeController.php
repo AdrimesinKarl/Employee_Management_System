@@ -29,7 +29,27 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:employees,email',
+            'position' => 'required|string|max:255',
+            'hourly_rate' => 'required|numeric|min:0',
+        ]);
+
+    // this stores the validated data into the database with basic sanitization
+    $validated['first_name'] = htmlspecialchars($validated['first_name']);
+    $validated['last_name'] = htmlspecialchars($validated['last_name']);
+    $validated['email'] = htmlspecialchars($validated['email']);
+    $validated['position'] = htmlspecialchars($validated['position']);
+    $validated['hourly_rate'] = htmlspecialchars($validated['hourly_rate']);
+
+    // Create a new employee record
+    Employee::create($validated);
+
+    //redirect to the employee list with a success message
+    return redirect()->route('employees.employee_list')->with('success', 'Employee created!');
+
     }
 
     /**
