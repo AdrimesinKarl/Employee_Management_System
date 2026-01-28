@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AttendanceController;
   //I've got some errors here because I didn't import the EmployeeController when I created the route. I've fixed it by adding this line.
 
 Route::get('/', function () {
@@ -32,10 +33,10 @@ Route::middleware(['auth'])->group(function () {
         )
         ->name('two-factor.show');
 
-Route::get('/greeting', function (){
-return 'ayaw ko na!';
-});
-
 Route::resource('employees',EmployeeController::class); //this is the route to list all employees
 
+Route::resource('attendances', AttendanceController::class)->middleware('auth'); //this is the route to list all attendances
+
 });
+
+
