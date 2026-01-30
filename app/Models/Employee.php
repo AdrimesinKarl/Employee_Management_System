@@ -13,4 +13,16 @@ class Employee extends Model
         'position',
         'hourly_rate'
     ];
+    
+    public function getMonthlyPayrollAttribute() //calculate the monthly payroll for the employee
+    {
+    $totalHours = $this->attendances()
+        ->whereMonth('date', now()->month) //this get the attendances for the current month & and sum all hours worked
+        ->get()
+        ->sum('hours_worked');
+
+    return $totalHours * $this->hourly_rate;
+    }
+
 }
+

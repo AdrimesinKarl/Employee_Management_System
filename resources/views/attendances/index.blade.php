@@ -14,24 +14,24 @@
     @if (count($attendances) > 0) <!--check if the database has any data-->
 
         <table border="1">
-            <tr>
-                <th>Employee Name</th>
-                <th>Date</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-            </tr>
+    <tr>
+        <th>Employee Name</th>
+        <th>Date</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+        <th>Hours Worked</th>
+    </tr>
 
-    @foreach ($attendances as $attendance) <!--loop through all data from the database-->
-
-        <tr>
-            <td>{{ $attendance->employee->first_name }} {{ $attendance->employee->last_name }}</td>
-            <td>{{ $attendance->date }}</td>
-            <td>{{ $attendance->check_in }}</td>
-            <td>{{ $attendance->check_out }}</td>
-        </tr>
-
+    @foreach ($attendances as $attendance)
+    <tr>
+        <td>{{ $attendance->employee->first_name }} {{ $attendance->employee->last_name }}</td>
+        <td>{{ $attendance->date }}</td>
+        <td>{{ $attendance->check_in }}</td>
+        <td>{{ $attendance->check_out }}</td>
+        <td>{{ number_format($attendance->hours_worked, 2) }}</td> <!--Calculate how many hours this employee worked today, format it to 2 decimal places, and display it in a table cell-->
+    </tr>
     @endforeach
-        </table>
+</table>
 
     @else
     <p>No attendance records found.</p>

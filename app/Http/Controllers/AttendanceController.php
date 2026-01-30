@@ -11,7 +11,7 @@
          */
         public function index()
         {
-            // Retrieve all attendance records from the database
+            //Retrieve all attendance records from the database
             $attendances = Attendance::all(); //fetch all records
             return view('attendances.index', compact('attendances')); // Pass the data to the view
         }
