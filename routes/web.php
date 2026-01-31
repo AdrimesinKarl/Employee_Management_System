@@ -5,6 +5,7 @@ use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\PayrollController;
   //I've got some errors here because I didn't import the EmployeeController when I created the route. I've fixed it by adding this line.
 
 Route::get('/', function () {
@@ -37,6 +38,7 @@ Route::resource('employees',EmployeeController::class); //this is the route to l
 
 Route::resource('attendances', AttendanceController::class)->middleware('auth'); //this is the route to list all attendances
 
-});
+Route::resource('payrolls', PayrollController::class)->middleware('auth'); //this is the route to list all payrolls
 
+});
 
