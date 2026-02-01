@@ -2,12 +2,23 @@
 
 @section('content')
 <h1>Generate Payroll</h1>
-@csrf
 
 <form action="{{ route('payrolls.store') }}" method="POST">
     @csrf
 
-    <input type="hidden" name="employee_id" value="{{ $employee->id }}">
+    @if($employees->isEmpty())
+        <p>No employees available.</p>
+    @else
+        <label>Employee</label>
+        <select name="employee_id" required>
+            @foreach($employees as $employee)
+                <option value="{{ $employee->id }}">
+                    {{ $employee->name }}
+            </option>
+        @endforeach
+    </select>
+
+    <br><br>
 
     <div>
         <label>Period Start</label>
@@ -21,4 +32,5 @@
 
     <button type="submit">Generate Payroll</button>
 </form>
+@endif
 @endsection
