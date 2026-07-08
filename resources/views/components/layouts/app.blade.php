@@ -6,7 +6,7 @@
     </head>
     <body>
         <header>
-        <h1>Employee Management System</h1>
+        <h1>Emplytics</h1>
         <hr/>
         </header>
 
@@ -15,7 +15,7 @@
         </main>
 
         <footer>
-            <p>&copy; 2026 Employee System</p>
+            <p>&copy; 2026 Emplytics</p>
         </footer>
     </body>
 </html>

@@ -70,8 +70,8 @@ public function index(Request $request): View
         $validated = $request->validate([
             'employee_id' => ['required', 'exists:employees,id'],
             'date'        => ['required', 'date'],
-            'time_in'     => ['nullable', 'date_format:H:i'],
-            'time_out'   => ['nullable', 'date_format:H:i'],
+            'time_in'     => ['nullable', 'date_format:H:i:s'],
+            'time_out'   => ['nullable', 'date_format:H:i:s'],
         ]);
 
         Attendance::create($validated);
@@ -107,8 +107,8 @@ public function index(Request $request): View
         $validated = $request->validate([
             'employee_id' => ['required', 'exists:employees,id'],
             'date' => ['required', 'date'],
-            'time_in' => ['nullable', 'date_format:H:i'],
-            'time_out' => ['nullable', 'date_format:H:i'],
+            'time_in' => ['nullable', 'date_format:H:i:s'],
+            'time_out' => ['nullable', 'date_format:H:i:s'],
         ]);
 
         $attendance->update($validated);

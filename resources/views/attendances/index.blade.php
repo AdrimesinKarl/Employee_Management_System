@@ -44,9 +44,9 @@
                         <tr>
                             <td>{{ $attendance->employee->first_name }} {{ $attendance->employee->last_name }}</td>
                             <td>{{ $attendance->date?->format('M d, Y') }}</td>
-                            <td>{{ $attendance->time_in ? $attendance->time_in->format('h:i A') : '--' }}</td>
-                            <td>{{ $attendance->time_out ? $attendance->time_out->format('h:i A') : '--' }}</td>
-                            <td><strong>{{ number_format($attendance->hours_worked, 2) }} hrs</strong></td>
+                            <td>{{ $attendance->time_in ? $attendance->time_in->format('h:i:s A') : '--' }}</td>
+                            <td>{{ $attendance->time_out ? $attendance->time_out->format('h:i:s A') : '--' }}</td>
+                            <td>{{ $attendance->hours_worked }}</td>
                                 <td>
                                     @can('update', $attendance)
                                         <x-button href="{{ route($prefix . 'attendances.edit', $attendance) }}">Edit</x-button>

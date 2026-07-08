@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use User;
+use Carbon\Carbon;
 
 class Attendance extends Model
 {
@@ -15,8 +15,8 @@ class Attendance extends Model
     protected $fillable = [
         'employee_id',
         'date',
-        'check_in',
-        'check_out',
+        'time_in',
+        'time_out',
     ];
 
     // Convert database strings into PHP date/time objects automatically
@@ -24,33 +24,47 @@ class Attendance extends Model
     {
         return [
             'date' => 'date',
-            'check_in' => 'datetime:H:i',
-            'check_out' => 'datetime:H:i',
         ];
     }
 
+    protected function timeIn(): Attribute
+    {
+    return Attribute::make(
+        get: fn($value) => $value ? Carbon::createFromFormat('H:i:s', $value) : null,
+        set: fn($value) => $value,
+    );
+    }
+
+    // Convert time_out to Carbon instance for easier manipulation
+    protected function timeOut(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $value ? Carbon::createFromFormat('H:i:s', $value) : null,
+            set: fn($value) => $value,
+        );
+    }
+    
+    //calculate hours worked for this specific day
+    protected function hoursWorked(): Attribute
+{
+    return Attribute::make(
+        get: function () {
+            if (!$this->time_in || !$this->time_out) {
+                return '0h 0m';
+            }
+
+            $minutes = $this->time_in->diffInMinutes($this->time_out);
+
+            return floor($minutes / 60) . 'h ' . ($minutes % 60) . 'm';
+        }
+    );
+}
+    
     // Get the employee who owns this record
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class, 'employee_id');
     }
     
-    /**
-     * Calculate hours worked for this specific day.
-     * Accessible via: $attendance->hours_worked
-     */
-    protected function hoursWorked(): Attribute
-    {
-        return Attribute::make(
-            get: function () {
-                if (!$this->check_in || !$this->check_out) {
-                    return 0;
-                }
-
-                // Finds the difference between clock-out and clock-in
-                return round($this->check_out->diffInMinutes($this->check_in) / 60, 2);
-            }
-        );
-    }
 }
 

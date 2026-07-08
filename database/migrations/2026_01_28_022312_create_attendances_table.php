@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id(); // Primary key
             $table->foreignId('employee_id')->constrained()->cascadeOnDelete(); // link to employees table
             $table->date('attendance_date');
-            $table->time('check_in')->nullable();
-            $table->time('check_out')->nullable();
+            $table->time('time_in')->nullable();
+            $table->time('time_out')->nullable();
             $table->timestamps();
         });
     }
