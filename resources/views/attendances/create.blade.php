@@ -33,15 +33,15 @@
 
             {{-- Time Logs --}}
             <div class="form-group">
-                <label for="check_in">Check In</label>
-                <input type="time" id="check_in" name="check_in" value="{{ old('check_in') }}">
-                @error('check_in') <p class="error-text">{{ $message }}</p> @enderror
+                <label for="time_in">Time In</label>
+                <input type="time" id="time_in" name="time_in" value="{{ old('time_in') }}">
+                @error('time_in') <p class="error-text">{{ $message }}</p> @enderror
             </div>
 
             <div class="form-group">
-                <label for="check_out">Check Out</label>
-                <input type="time" id="check_out" name="check_out" value="{{ old('check_out') }}">
-                @error('check_out') <p class="error-text">{{ $message }}</p> @enderror
+                <label for="time_out">Time Out</label>
+                <input type="time" id="time_out" name="time_out" value="{{ old('time_out') }}">
+                @error('time_out') <p class="error-text">{{ $message }}</p> @enderror
             </div>
 
             {{-- Submission Actions --}}

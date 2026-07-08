@@ -14,8 +14,8 @@
     <div class="details-card">
         <h2>{{ $attendance->employee->first_name }} {{ $attendance->employee->last_name }}</h2>
         <p><strong>Date:</strong> {{ $attendance->date->format('M d, Y') }}</p>
-        <p><strong>Check In:</strong> {{ $attendance->check_in ? $attendance->check_in->format('h:i A') : '--' }}</p>
-        <p><strong>Check Out:</strong> {{ $attendance->check_out ? $attendance->check_out->format('h:i A') : '--' }}</p>
+        <p><strong>Time In:</strong> {{ $attendance->time_in ? $attendance->time_in->format('h:i A') : '--' }}</p>
+        <p><strong>Time Out:</strong> {{ $attendance->time_out ? $attendance->time_out->format('h:i A') : '--' }}</p>
         <p><strong>Hours Worked:</strong> {{ number_format($attendance->hours_worked, 2) }} hrs</p>
     </div>
 

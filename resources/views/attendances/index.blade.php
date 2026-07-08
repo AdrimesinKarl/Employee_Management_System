@@ -33,8 +33,8 @@
                     <tr>
                         <th>Employee Name</th>
                         <th>Date</th>
-                        <th>Check In</th>
-                        <th>Check Out</th>
+                        <th>Time In</th>
+                        <th>Time Out</th>
                         <th>Hours Worked</th>
                         <th>Actions</th>
                     </tr>
@@ -44,8 +44,8 @@
                         <tr>
                             <td>{{ $attendance->employee->first_name }} {{ $attendance->employee->last_name }}</td>
                             <td>{{ $attendance->date?->format('M d, Y') }}</td>
-                            <td>{{ $attendance->check_in ? $attendance->check_in->format('h:i A') : '--' }}</td>
-                            <td>{{ $attendance->check_out ? $attendance->check_out->format('h:i A') : '--' }}</td>
+                            <td>{{ $attendance->time_in ? $attendance->time_in->format('h:i A') : '--' }}</td>
+                            <td>{{ $attendance->time_out ? $attendance->time_out->format('h:i A') : '--' }}</td>
                             <td><strong>{{ number_format($attendance->hours_worked, 2) }} hrs</strong></td>
                                 <td>
                                     @can('update', $attendance)

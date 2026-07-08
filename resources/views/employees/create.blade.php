@@ -21,7 +21,7 @@
         </div>
 
         {{-- Last Name --}}
-        <div class="form-group">`
+        <div class="form-group">
             <label for="last_name">Last Name</label>
             <input type="text" id="last_name" name="last_name"
                 value="{{ old('last_name') }}" required>
