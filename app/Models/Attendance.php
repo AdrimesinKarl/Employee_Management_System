@@ -27,19 +27,19 @@ class Attendance extends Model
         ];
     }
 
+    // Convert time_out to Carbon instance for easier manipulation
     protected function timeIn(): Attribute
     {
     return Attribute::make(
-        get: fn($value) => $value ? Carbon::createFromFormat('H:i:s', $value) : null,
+        get: fn($value) => $value ? Carbon::createFromFormat('H:i:', $value) : null,
         set: fn($value) => $value,
     );
     }
 
-    // Convert time_out to Carbon instance for easier manipulation
     protected function timeOut(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::createFromFormat('H:i:s', $value) : null,
+            get: fn($value) => $value ? Carbon::createFromFormat('H:i:', $value) : null,
             set: fn($value) => $value,
         );
     }

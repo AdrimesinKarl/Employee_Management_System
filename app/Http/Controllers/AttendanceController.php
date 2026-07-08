@@ -66,6 +66,10 @@ public function index(Request $request): View
      */
     public function store(Request $request): RedirectResponse
     {
+        $request->merge([
+            'time_in' => $request->time_in ? $request->time_in . ':00' : null,
+            'time_out' => $request->time_out ? $request->time_out . ':00' : null,
+        ]);
         // validate input
         $validated = $request->validate([
             'employee_id' => ['required', 'exists:employees,id'],
@@ -104,11 +108,16 @@ public function index(Request $request): View
      */
     public function update(Request $request, Attendance $attendance): RedirectResponse
     {
+        $request->merge([
+            'time_in' => $request->time_in ? $request->time_in . ':00' : null,
+            'time_out' => $request->time_out ? $request->time_out . ':00' : null,
+    ]);
+
         $validated = $request->validate([
             'employee_id' => ['required', 'exists:employees,id'],
             'date' => ['required', 'date'],
-            'time_in' => ['nullable', 'date_format:H:i:s'],
-            'time_out' => ['nullable', 'date_format:H:i:s'],
+            'time_in' => ['nullable', 'date_format:H:i:'],
+            'time_out' => ['nullable', 'date_format:H:i:'],
         ]);
 
         $attendance->update($validated);
